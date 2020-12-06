@@ -6,7 +6,6 @@ from sklearn.model_selection import train_test_split
 
 
 def write_output(df, path):
-    os.makedirs(path, exist_ok=True)
     print("%s created" % path)
     df.to_parquet(path + "/processed.parquet")
 
@@ -34,5 +33,5 @@ output_split_test.reset_index(inplace=True, drop=True)
 
 if not (args.output_split_train is None and
         args.output_split_test is None):
-    write_output(output_split_train, args.output_split_train)
-    write_output(output_split_test, args.output_split_test)
+    write_output(output_split_train, os.getcwd())
+    write_output(output_split_test, os.getcwd())
